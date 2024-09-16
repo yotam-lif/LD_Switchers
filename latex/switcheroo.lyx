@@ -1,16 +1,16 @@
-#LyX 2.4 created this file. For more info see https://www.lyx.org/
-\lyxformat 620
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
 \save_transient_properties true
 \origin unavailable
 \textclass article
 \use_default_options true
-\maintain_unincluded_children no
+\maintain_unincluded_children false
 \language american
 \language_package default
 \inputencoding utf8
-\fontencoding auto
+\fontencoding global
 \font_roman "default" "default"
 \font_sans "default" "default"
 \font_typewriter "default" "default"
@@ -18,9 +18,7 @@
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
-\font_roman_osf false
-\font_sans_osf false
-\font_typewriter_osf false
+\font_osf false
 \font_sf_scale 100 100
 \font_tt_scale 100 100
 \use_microtype false
@@ -30,8 +28,6 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
-\float_placement class
-\float_alignment class
 \paperfontsize default
 \use_hyperref false
 \papersize default
@@ -54,9 +50,7 @@
 \suppress_date false
 \justification true
 \use_refstyle 1
-\use_formatted_ref 0
 \use_minted 0
-\use_lineno 0
 \index Index
 \shortcut idx
 \color #008080
@@ -72,16 +66,11 @@
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
-\tablestyle default
 \tracking_changes false
 \output_changes false
-\change_bars false
-\postpone_fragile_content true
 \html_math_output 0
 \html_css_as_file 0
 \html_be_strict false
-\docbook_table_output 0
-\docbook_mathml_prefix 1
 \end_header
 
 \begin_body
@@ -91,7 +80,8 @@ LD with Mutator state Switching
 \end_layout
 
 \begin_layout Standard
-We have 2 distinct states (mutator and non mutator) where rates of switching are 
+We have 2 distinct states (mutator and non mutator) where rates of switching
+ are 
 \begin_inset Formula $r_{ij}$
 \end_inset
 
@@ -143,8 +133,7 @@ Where
 \begin_inset Formula $\lambda$
 \end_inset
 
- is growth rate,
- assumed to be identical for both states.
+ is growth rate, assumed to be identical for both states.
 \end_layout
 
 \begin_layout Standard
@@ -152,8 +141,7 @@ Assume we sample
 \begin_inset Formula $N$
 \end_inset
 
- individuals,
- and make each the origin of a distinct colony.
+ individuals, and make each the origin of a distinct colony.
  The time dependent fraction of state 
 \begin_inset Formula $2$
 \end_inset
@@ -218,9 +206,8 @@ f_{2}(t)=\begin{cases}
 
 \begin_layout Standard
 As can be expected.
- As in LD,
- average number of mutation events 
-\begin_inset Formula $m$
+ As in LD, average number of mutants at time 
+\begin_inset Formula $t$
 \end_inset
 
 :
@@ -229,7 +216,7 @@ As can be expected.
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\frac{d\left\langle m(t)\right\rangle }{dt}=\mu N_{2}(t)=\mu f_{2}(t)e^{\lambda t}
+\frac{d\left\langle m(t)\right\rangle }{dt}=\mu N_{2}(t)+\lambda\left\langle m(t)\right\rangle =\mu f_{2}(t)e^{\lambda t}+\lambda\left\langle m(t)\right\rangle 
 \]
 
 \end_inset
@@ -238,16 +225,13 @@ As can be expected.
 \end_layout
 
 \begin_layout Standard
-Integrating:
+We can see that this solution gives the above equation:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\left\langle m(t)\right\rangle =\mu\times\begin{cases}
-\frac{\hat{f_{2}}}{\lambda}(e^{\lambda t}-1)+\frac{1}{r_{12}+r_{21}-\lambda}\left(1-\hat{f_{2}}\right)(1-e^{-(r_{12}+r_{21}-\lambda)t}) & p=\hat{f_{2}}\\
-\hat{f_{2}}\left(\frac{1}{\lambda}(e^{\lambda t}-1)-\frac{1}{r_{12}+r_{21}-\lambda}(1-e^{-(r_{12}+r_{21}-\lambda)t})\right) & p=1-\hat{f_{2}}
-\end{cases}
+\left\langle m(t)\right\rangle =\mu e^{\lambda t}\int f_{2}(t)dt
 \]
 
 \end_inset
@@ -256,15 +240,15 @@ Integrating:
 \end_layout
 
 \begin_layout Standard
-And we can approximate:
+The full solution:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\left\langle m(t)\right\rangle =\mu\times\begin{cases}
-\hat{f_{2}}\frac{e^{\lambda t}}{\lambda}+\left(1-\hat{f_{2}}\right)\frac{1-e^{-(r_{12}+r_{21}-\lambda)t}}{r_{12}+r_{21}-\lambda} & p=\hat{f_{2}}\\
-\hat{f_{2}}\left(\frac{e^{\lambda t}}{\lambda}-\frac{1-e^{-(r_{12}+r_{21}-\lambda)t}}{r_{12}+r_{21}-\lambda}\right) & p=1-\hat{f_{2}}
+\left\langle m(t)\right\rangle =\mu e^{\lambda t}\times\begin{cases}
+\hat{f_{2}}t+\frac{1-\hat{f_{2}}}{r_{12}+r_{21}}\left(1-e^{-(r_{12}+r_{21})t}\right) & p=\hat{f_{2}}\\
+\hat{f_{2}}\left(t-\frac{1}{r_{12}+r_{21}}\left(1-e^{-(r_{12}+r_{21})t}\right)\right) & p=1-\hat{f_{2}}
 \end{cases}
 \]
 
@@ -280,7 +264,7 @@ Now average again on IC to get the true average across colonies:
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\left\langle m(t)\right\rangle =\mu\times\left(\hat{f_{2}}^{2}\frac{e^{\lambda t}}{\lambda}+\left(\hat{f_{2}}-\hat{f_{2}}^{2}\right)\frac{1-e^{-(r_{12}+r_{21}-\lambda)t}}{r_{12}+r_{21}-\lambda}+(\hat{f_{2}}-\hat{f_{2}}^{2})\left(\frac{e^{\lambda t}}{\lambda}-\frac{1-e^{-(r_{12}+r_{21}-\lambda)t}}{r_{12}+r_{21}-\lambda}\right)\right)
+\left\langle m(t)\right\rangle =\mu e^{\lambda t}\times\left(\hat{f_{2}}^{2}t+\hat{f_{2}}\frac{1-\hat{f_{2}}}{r_{12}+r_{21}}\left(1-e^{-(r_{12}+r_{21})t}\right)+\hat{f_{2}}(1-\hat{f_{2}})\left(t-\frac{1}{r_{12}+r_{21}}\left(1-e^{-(r_{12}+r_{21})t}\right)\right)\right)
 \]
 
 \end_inset
@@ -291,7 +275,7 @@ Now average again on IC to get the true average across colonies:
 \begin_layout Standard
 \begin_inset Formula 
 \[
-=\frac{\mu}{\lambda}\hat{f_{2}}e^{\lambda t}
+=\mu\hat{f_{2}}te^{\lambda t}
 \]
 
 \end_inset
@@ -313,13 +297,17 @@ Now lets say we run an experiment to time
 \begin_inset Formula $t$
 \end_inset
 
- is:
+ is instantaneous mutants at time 
+\begin_inset Formula $t$
+\end_inset
+
+ minus the growth from mutants that already exist:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\left\langle S(t)\right\rangle =\left\langle m(t)\right\rangle e^{\lambda(t_{f}-t)}=\frac{\mu}{\lambda}\hat{f_{2}}e^{\lambda t_{f}}
+\left\langle S(t)\right\rangle =\left(\frac{d\left\langle m(t)\right\rangle }{dt}-\lambda\left\langle m(t)\right\rangle \right)e^{\lambda(t_{f}-t)}=\mu f_{2}(t)e^{\lambda t_{f}}
 \]
 
 \end_inset
@@ -328,12 +316,12 @@ Now lets say we run an experiment to time
 \end_layout
 
 \begin_layout Standard
-So it seems the addition to the mean relative to the standard LD process is a trivial factor of 
+So it seems the addition to the mean relative to the standard LD process
+ is a trivial factor of 
 \begin_inset Formula $\hat{f_{2}}$
 \end_inset
 
-,
- and the average number of survivors originating from time 
+, and the average number of survivors originating from time 
 \begin_inset Formula $t$
 \end_inset
 
@@ -341,8 +329,7 @@ So it seems the addition to the mean relative to the standard LD process is a tr
 \begin_inset Formula $t$
 \end_inset
 
-,
- exactly as in the original setting.
+, exactly as in the original setting.
  
 \end_layout
 
