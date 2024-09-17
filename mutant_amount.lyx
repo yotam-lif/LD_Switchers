@@ -1,0 +1,561 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+\series bold
+Fano Factor for Mutator Phenotypic State Switching 
+\end_layout
+
+\begin_layout Standard
+We aim to calculate the mean 
+\begin_inset Formula $E[M(t)]$
+\end_inset
+
+ and variance 
+\begin_inset Formula $Var[M(t)]$
+\end_inset
+
+ of the number of mutations 
+\begin_inset Formula $M(t)$
+\end_inset
+
+ after 
+\begin_inset Formula $t$
+\end_inset
+
+ generations in the switching process, using the expressions for the fraction
+ of mutator cells 
+\begin_inset Formula $f_{2}(t)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Definitions and Assumptions:
+\end_layout
+
+\begin_layout Enumerate
+States: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+State 1: Regular cells with mutation rate 
+\begin_inset Formula $\mu_{1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+State 2: Mutator cells with mutation rate 
+\begin_inset Formula $\mu_{2}$
+\end_inset
+
+, where
+\begin_inset Formula $\mu_{2}\gg\mu_{1}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Switching rates:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $k_{1}$
+\end_inset
+
+ : Rate of switching from State 1 to State 2
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k_{2}$
+\end_inset
+
+ : Rate of switching from State 2 to State 1
+\end_layout
+
+\begin_layout Itemize
+Equilibrium Fraction of mutator Cells: 
+\begin_inset Formula $\hat{f}_{2}=\frac{k_{1}}{k_{1}+k_{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Equilibrium Fraction of regular Cells: 
+\begin_inset Formula $\hat{f}_{1}=1-\hat{f}_{2}=\frac{k_{2}}{k_{1}+k_{2}}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Define 
+\begin_inset Formula $\mu=\hat{f}_{1}\mu_{1}+\hat{f}_{2}\mu_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Fraction of mutator cells at time 
+\begin_inset Formula $t$
+\end_inset
+
+ can be solved:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f_{2}(t)=\frac{x_{2}(t)}{x(t)}=\begin{cases}
+\hat{f_{2}}+\left(1-\hat{f_{2}}\right)e^{-(k_{1}+k_{2})t} & p=\hat{f_{2}}\\
+\hat{f_{2}}\left(1-e^{-(k_{1}+k_{2})t}\right) & p=1-\hat{f_{2}}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $x_{2}(t)$
+\end_inset
+
+ is the number of cells in state 2, and 
+\begin_inset Formula $x(t)$
+\end_inset
+
+ is the total number of cells at time 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Section*
+Luria-Delbruck vs.
+ State Switching Hypothesis
+\end_layout
+
+\begin_layout Standard
+Say there are 2 hypothesis for how a culture of mutating organisms mutate:
+\end_layout
+
+\begin_layout Enumerate
+State switching as defined above, with rate 
+\begin_inset Formula $\mu_{1},\mu_{2}$
+\end_inset
+
+ for states 
+\begin_inset Formula $1,2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+All the population mutates with rate 
+\begin_inset Formula $\mu$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Can we distinguish between the 2 states somehow? We shall see the Fano Factor
+ for the number of mutations(the genetic richness of the population) distinguish
+es between both.
+ For the LD case this is easy - the number of mutations is a regular Poisson
+ process with Fano Factor 1.
+ 
+\end_layout
+
+\begin_layout Standard
+We shall derive the Fano Factor for the switching hypothesis.
+\end_layout
+
+\begin_layout Part*
+Derivation
+\end_layout
+
+\begin_layout Itemize
+Population size(given growth rate 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ that does not change between mutants) :
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N(t)=N_{0}e^{\lambda t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Number of divisions that happened up to time 
+\begin_inset Formula $t$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+D(t)=\int_{0}^{t}N(t)dt\approx\frac{N_{0}}{\lambda}e^{\lambda t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Mean and Variance of 
+\begin_inset Formula $f_{2}(t)$
+\end_inset
+
+ : 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E[f_{2}(t)]=\hat{f}_{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+CV_{2}^{2}(t)=\frac{Var[f_{2}(t)]}{\left(E[f_{2}(t)]\right)^{2}}=\frac{1-\hat{f}_{2}}{\hat{f}_{2}}e^{-2(k_{1}+k_{2})t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var[f_{2}(t)]=\left(E[f_{2}(t)]\right)^{2}\times CV_{2}^{2}(t)=\left(1-\hat{f}_{2}\right)e^{-2(k_{1}+k_{2})t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Mean Number of Mutations 
+\begin_inset Formula $E[M(t)]$
+\end_inset
+
+: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+E[M(t)] & =E[M_{1}(t)]+E[M_{2}(t)]=\int_{0}^{t}\left(N_{1}(t)\times\mu_{1}+N_{2}(t)\times\mu_{2}\right)dt\\
+ & =N_{0}\int_{0}^{t}e^{\lambda t}\left(\hat{f_{1}}\mu_{1}+\hat{f_{2}}\mu_{2}\right)dt\approx N_{0}\frac{\mu}{\lambda}e^{\lambda t}=D(t)\mu
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N_{i}(t)=N(t)\times f_{i}(t)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Variance of Number of Mutations
+\begin_inset Formula $\text{Var}[M(t)]$
+\end_inset
+
+, using the law of total variance:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\text{Var}[M(t)]=E\left[\text{Var}[M(t)\mid f_{2}(t)]\right]+\text{Var}\left[E[M(t)\mid f_{2}(t)]\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Variance Given 
+\begin_inset Formula $f_{2}(t)$
+\end_inset
+
+ (1st term):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\text{Var}[M(t)\mid f_{2}(t)]=\text{Var}[M_{1}(t)\mid f_{2}(t)]+\text{Var}[M_{2}(t)\mid f_{2}(t)]=
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\int_{0}^{t}\left(N_{1}(t)\mu_{1}(1-\mu_{1})+N_{2}(t)\mu_{2}(1-\mu_{2})\right)dt
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since 
+\begin_inset Formula $\mu_{1},\mu_{2}\ll1$
+\end_inset
+
+ , we can approximate:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\text{Var}[M(t)\mid f_{2}(t)]\approx\int_{0}^{t}\left(N_{1}(t)\mu_{1}+N_{2}(t)\mu_{2}\right)dt
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Taking the expected value: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E\left[\text{Var}[M(t)\mid f_{2}(t)]\right]=D(t)\mu
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Variance of the Conditional Mean:
+\end_layout
+
+\begin_layout Standard
+First, compute 
+\begin_inset Formula $E[M(t)\mid f_{2}(t)]$
+\end_inset
+
+ -
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{align*}E[M(t)\mid f_{2}(t)] & =\int_{0}^{t}\left(N_{1}(t)\mu_{1}+N_{2}(t)\mu_{2}\right)dt\\
+ & =\int_{0}^{t}N(t)\left(\mu_{1}\left(1-f_{2}(t)\right)+\mu_{2}f_{2}(t)\right)dt\\
+ & =\int_{0}^{t}N(t)\left(\mu_{1}+\left(\mu_{2}-\mu_{1}\right)f_{2}(t)\right)dt\\
+ & \approx\int_{0}^{t}N(t)\left(\mu_{1}+\mu_{2}f_{2}(t)\right)dt\\
+ & =D(t)\left(\mu_{1}+\mu_{2}f_{2}(t)\right)
+\end{align*}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now, compute the variance
+\begin_inset Formula $(\hat{f}_{2}\ll1)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\text{Var}\left[E[M(t)\mid f_{2}(t)]\right] & =D(t)^{2}\mu_{2}^{2}\text{Var}[f_{2}(t)]\\
+ & =D(t)^{2}\mu_{2}^{2}\hat{f}_{2}(1-\hat{f}_{2})e^{-2(k_{1}+k_{2})t}\\
+ & \approx D(t)^{2}\mu_{2}^{2}\hat{f}_{2}e^{-2(k_{1}+k_{2})t}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Combining the components: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{align*}\text{Var}[M(t)] & \approx D(t)\mu+D(t)^{2}\mu_{2}^{2}\hat{f}_{2}e^{-2(k_{1}+k_{2})t}\end{align*}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, the ratio is:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\frac{\text{Var}[M(t)]}{E[M(t)]} & =\frac{D(t)\mu+D(t)^{2}\mu_{2}^{2}\hat{f}_{2}e^{-2(k_{1}+k_{2})t}}{D(t)\mu}\\
+ & =1+\frac{N_{0}}{\lambda}\frac{\mu_{2}^{2}\hat{f}_{2}}{\mu_{1}(1-\hat{f}_{2})+\mu_{2}\hat{f}_{2}}e^{\left(\lambda-2(k_{1}+k_{2})\right)t}\\
+ & \approx1+\frac{N_{0}}{\lambda}\frac{\mu_{2}}{1+\frac{\mu_{1}}{\mu_{2}}\frac{1}{\hat{f}_{2}}}e^{\left(\lambda-2(k_{1}+k_{2})\right)t}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
