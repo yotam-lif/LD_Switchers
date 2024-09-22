@@ -221,8 +221,8 @@ Fraction of mutator cells at time
 \begin_inset Formula 
 \[
 f_{2}(t)=\frac{x_{2}(t)}{x(t)}=\begin{cases}
-\hat{f_{2}}+\left(1-\hat{f_{2}}\right)e^{-(k_{1}+k_{2})t} & p=\hat{f_{2}}\\
-\hat{f_{2}}\left(1-e^{-(k_{1}+k_{2})t}\right) & p=1-\hat{f_{2}}
+\hat{f_{2}}\left(1-e^{-(k_{1}+k_{2})t}\right) & p=1-\hat{f_{2}}\\
+\hat{f_{2}}+\left(1-\hat{f_{2}}\right)e^{-(k_{1}+k_{2})t} & p=\hat{f_{2}}
 \end{cases}
 \]
 
@@ -281,13 +281,13 @@ All the population mutates with rate
 
 \begin_layout Standard
 Can we distinguish between the 2 states somehow?
- We shall see the Fano Factor for the number of mutations(the genetic richness of the population) distinguishes between both.
- For the LD case this is easy - the number of mutations is a regular Poisson process with Fano Factor 1.
+ We shall see the Fano factor(variance over the mean) for the number of mutations(the genetic richness of the population) distinguishes between both.
+ For the LD case this is easy - the number of mutations is a regular Poisson process with Fano factor(FF) 1.
  
 \end_layout
 
 \begin_layout Standard
-We shall derive the Fano Factor for the switching hypothesis.
+We shall derive the FF for the switching hypothesis.
 \end_layout
 
 \begin_layout Part*
@@ -315,25 +315,6 @@ N(t)=N_{0}e^{\lambda t}
 \end_layout
 
 \end_deeper
-\begin_layout Itemize
-Number of divisions that happened up to time 
-\begin_inset Formula $t$
-\end_inset
-
-:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-D(t)=\int_{0}^{t}N(t)dt\approx\frac{N_{0}}{\lambda}e^{\lambda t}
-\]
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Itemize
 Mean and Variance of 
 \begin_inset Formula $f_{2}(t)$
@@ -390,10 +371,10 @@ Mean Number of Mutations
 \begin_layout Standard
 \begin_inset Formula 
 \begin{align*}
-E[M(t)] & =E[M_{1}(t)]+E[M_{2}(t)]=\int_{0}^{t}\left(N_{1}(t)\mu_{1}+N_{2}(t)\mu_{2}\right)dt\\
+E[M(t)] & =E[M_{1}(t)]+E[M_{2}(t)]\\
  & =E\left[\int_{0}^{t}N_{1}(t)\mu_{1}dt\right]+E\left[\int_{0}^{t}N_{2}(t)\mu_{2}dt\right]\\
- & =N_{0}\left(\mu_{1}\int_{0}^{t}E\left[f_{1}(t)\right]e^{\lambda t}dt+\mu_{2}\int_{0}^{t}E\left[f_{2}(t)\right]e^{\lambda t}dt\right)\\
- & =N_{0}\mu\int_{0}^{t}e^{\lambda t}dt\approx N_{0}\frac{\mu}{\lambda}e^{\lambda t}
+ & =N_{0}\mu_{1}\int_{0}^{t}e^{\lambda t}E\left[f_{1}(t)\right]dt+N_{0}\mu_{2}\int_{0}^{t}e^{\lambda t}E\left[f_{2}(t)\right]dt\\
+ & \approx N_{0}\frac{\mu_{1}\hat{f}_{1}+\mu_{2}\hat{f}_{2}}{\lambda}e^{\lambda t}=N(t)\frac{\mu}{\lambda}
 \end{align*}
 
 \end_inset
@@ -417,7 +398,7 @@ N_{i}(t)=N(t)f_{i}(t)
 \end_layout
 
 \begin_layout Itemize
-Variance of Number of Mutations
+Variance of Number of Mutations 
 \begin_inset Formula $\text{Var}[M(t)]$
 \end_inset
 
@@ -468,7 +449,11 @@ Where we treat
 \end_inset
 
  as independent RVs with no covariance.
- Taking 
+ 
+\end_layout
+
+\begin_layout Standard
+Taking 
 \begin_inset Formula $\mu_{1},\mu_{2}\ll1$
 \end_inset
 
@@ -489,15 +474,10 @@ Where we treat
 \end_layout
 
 \begin_layout Standard
-Taking the expected value:
- 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \begin{align*}
 E\left[\text{Var}[M(t)\mid f_{2}(t)]\right] & =N_{0}\int_{0}^{t}\left(E\left[f_{1}(t)\right]\mu_{1}+E\left[f_{2}(t)\right]\mu_{2}\right)e^{\lambda t}dt\\
- & =D(t)\mu
+ & =N(t)\frac{\mu}{\lambda}
 \end{align*}
 
 \end_inset
@@ -532,14 +512,12 @@ explained component
 \end_inset
 
 ):
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \begin{align*}
 E[M(t) & \mid f_{2}(t)]=\int_{0}^{t}\left(N_{1}(t)\mu_{1}+N_{2}(t)\mu_{2}\right)dt\\
  & =\int_{0}^{t}N(t)\left(\mu_{1}\left(1-f_{2}(t)\right)+\mu_{2}f_{2}(t)\right)dt\\
- & =N_{0}\int_{0}^{t}\left(\mu_{1}+\left(\mu_{2}-\mu_{1}\right)f_{2}(t)\right)e^{\lambda t}dt
+ & =N_{0}\int_{0}^{t}\left(\mu_{1}+\left(\mu_{2}-\mu_{1}\right)f_{2}(t)\right)e^{\lambda t}dt\\
+ & \approx N_{0}\int_{0}^{t}\left(\mu_{1}+\mu_{2}f_{2}(t)\right)e^{\lambda t}dt
 \end{align*}
 
 \end_inset
@@ -548,9 +526,27 @@ E[M(t) & \mid f_{2}(t)]=\int_{0}^{t}\left(N_{1}(t)\mu_{1}+N_{2}(t)\mu_{2}\right)
 \end_layout
 
 \begin_layout Standard
-Now,
- compute the variance
-\begin_inset Formula $(\mu_{2}\gg\mu_{1})$
+\begin_inset Formula 
+\begin{align*}
+\text{Var}\left[E[M(t)\mid f_{2}(t)]\right] & =N_{0}^{2}\mu_{2}^{2}\text{Var}\left[\int_{0}^{t}e^{\lambda t}dt\times\begin{cases}
+\hat{f_{2}}\left(1-e^{-(k_{1}+k_{2})t}\right) & p=1-\hat{f_{2}}\\
+\hat{f_{2}}+\left(1-\hat{f_{2}}\right)e^{-(k_{1}+k_{2})t} & p=\hat{f_{2}}
+\end{cases}\right]\\
+ & \approx N_{0}^{2}\mu_{2}^{2}e^{2\lambda t}\text{Var}\left[\begin{cases}
+\hat{f_{2}}\left(\frac{1}{\lambda}-\frac{1}{\lambda-(k_{1}+k_{2})}e^{-(k_{1}+k_{2})t}\right) & p=1-\hat{f_{2}}\\
+\hat{f_{2}}\frac{1}{\lambda}+\left(1-\hat{f_{2}}\right)\frac{1}{\lambda-(k_{1}+k_{2})}e^{-(k_{1}+k_{2})t} & p=\hat{f_{2}}
+\end{cases}\right]\\
+ & :=N_{0}^{2}\mu_{2}^{2}e^{2\lambda t}\text{Var}\left[I\right]\\
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Compute the variance of 
+\begin_inset Formula $I$
 \end_inset
 
 :
@@ -558,40 +554,18 @@ Now,
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
-\text{Var}\left[E[M(t)\mid f_{2}(t)]\right] & =\text{Var}\left[N_{0}\int_{0}^{t}\left(\mu_{1}+\left(\mu_{2}-\mu_{1}\right)f_{2}(t)\right)e^{\lambda t}dt\right]\\
- & \approx N_{0}^{2}\mu_{2}^{2}\text{Var}\left[\begin{cases}
-\int_{0}^{t}\hat{f_{2}}+\left(1-\hat{f_{2}}\right)e^{(\lambda-(k_{1}+k_{2}))t}dt & p=\hat{f_{2}}\\
-\int_{0}^{t}\hat{f_{2}}\left(e^{\lambda t}-e^{(\lambda-(k_{1}+k_{2}))t}\right)dt & p=1-\hat{f_{2}}
-\end{cases}\right]\\
- & \approx N_{0}^{2}\mu_{2}^{2}\text{Var}\left[\begin{cases}
-\hat{f_{2}}t+\frac{1}{\lambda-(k_{1}+k_{2})}\left(1-\hat{f_{2}}\right)e^{(\lambda-(k_{1}+k_{2}))t} & p=\hat{f_{2}}\\
-\hat{f_{2}}\left(\frac{e^{\lambda t}}{\lambda}-\frac{e^{(\lambda-(k_{1}+k_{2}))t}}{\lambda-(k_{1}+k_{2})}\right) & p=1-\hat{f_{2}}
-\end{cases}\right]\\
- & :=N_{0}^{2}\mu_{2}^{2}\text{Var}\left[I\right]
-\end{align*}
+\[
+E\left[I\right]=\frac{\hat{f_{2}}}{\lambda}
+\]
 
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
-
-Let us denote 
-\begin_inset Formula $\alpha:=\lambda-(k_{1}+k_{2})$
-\end_inset
-
-.
- Now:
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \begin{align*}
-E[I^{2}] & =\\
- & =N_{0}^{2}\mu_{2}^{2}\left[\hat{f_{2}}\left(\hat{f_{2}}t+\frac{e^{\alpha t}}{\alpha}\left(1-\hat{f_{2}}\right)\right)^{2}+\left(1-\hat{f_{2}}\right)\hat{f_{2}}^{2}\left(\frac{e^{\lambda t}}{\lambda}-\frac{e^{\alpha t}}{\alpha}\right)^{2}\right]\\
- & =N_{0}^{2}\mu_{2}^{2}\hat{f_{2}}\left[\left(\hat{f_{2}}^{2}t^{2}+2\hat{f_{2}}t\left(1-\hat{f_{2}}\right)\frac{e^{\alpha t}}{\alpha}+\left(1-\hat{f_{2}}\right)^{2}\frac{e^{2\alpha t}}{\alpha^{2}}\right)+\hat{f_{2}}\left(1-\hat{f_{2}}\right)\left(\frac{e^{2\lambda t}}{\lambda^{2}}-2\frac{e^{(\lambda+\alpha)t}}{\lambda\alpha}+\frac{e^{2\alpha t}}{\alpha^{2}}\right)^{}\right]\\
- & =N_{0}^{2}\mu_{2}^{2}\hat{f_{2}}\left[\hat{f_{2}}^{2}t^{2}+2\hat{f_{2}}t\left(1-\hat{f_{2}}\right)\frac{e^{\alpha t}}{\alpha}+\left(1-2\hat{f_{2}}\right)\frac{e^{2\alpha t}}{\alpha^{2}}+\hat{f_{2}}\left(1-\hat{f_{2}}\right)\left(\frac{e^{2\lambda t}}{\lambda^{2}}-2\frac{e^{(\lambda+\alpha)t}}{\lambda\alpha}\right)\right]\\
+E\left[I^{2}\right] & =\left(1-\hat{f_{2}}\right)\hat{f_{2}}^{2}\left(\frac{1}{\lambda}-\frac{1}{\lambda-(k_{1}+k_{2})}e^{-(k_{1}+k_{2})t}\right)^{2}\\
+ & +\hat{f_{2}}\left(\hat{f_{2}}\frac{1}{\lambda}+\left(1-\hat{f_{2}}\right)\frac{1}{\lambda-(k_{1}+k_{2})}e^{-(k_{1}+k_{2})t}\right)^{2}\\
+ & =\frac{\hat{f_{2}}^{2}}{\lambda^{2}}+\hat{f_{2}}\left(1-\hat{f_{2}}\right)\frac{e^{-2(k_{1}+k_{2})t}}{\left(\lambda-(k_{1}+k_{2})\right)^{2}}
 \end{align*}
 
 \end_inset
@@ -602,8 +576,8 @@ E[I^{2}] & =\\
 \begin_layout Standard
 \begin_inset Formula 
 \begin{align*}
-E[I] & =N_{0}^{2}\mu_{2}^{2}\hat{f_{2}}\left[\left(\hat{f_{2}t}+\frac{e^{\alpha t}}{\alpha}\left(1-\hat{f_{2}}\right)\right)+\left(1-\hat{f_{2}}\right)\hat{f_{2}}\left(\frac{e^{\lambda t}}{\lambda}-\frac{e^{\alpha t}}{\alpha}\right)\right]\\
- & =N_{0}^{2}\mu_{2}^{2}\hat{f_{2}}\left[\hat{f_{2}t}+\left(1-\hat{f_{2}}\right)\hat{f_{2}}\frac{e^{\lambda t}}{\lambda}+\frac{e^{\alpha t}}{\alpha}\left(1-\hat{f_{2}}\right)^{2}\right]\\
+\text{Var}\left[I\right] & =E\left[I^{2}\right]-E\left[I\right]^{2}\\
+ & =\hat{f_{2}}\left(1-\hat{f_{2}}\right)\frac{e^{-2(k_{1}+k_{2})t}}{\left(\lambda-(k_{1}+k_{2})\right)^{2}}
 \end{align*}
 
 \end_inset
@@ -612,19 +586,29 @@ E[I] & =N_{0}^{2}\mu_{2}^{2}\hat{f_{2}}\left[\left(\hat{f_{2}t}+\frac{e^{\alpha 
 \end_layout
 
 \begin_layout Standard
-Combining both:
+So in total:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{align*}
-\text{Var}\left[I\right] & =E[I^{2}]-E[I]^{2}\\
- & =
+\frac{\text{Var}\left[M(t)\right]}{\text{E}\left[M(t)\right]} & =\frac{N(t)\frac{\mu}{\lambda}+N_{0}^{2}\mu_{2}^{2}e^{2\lambda t}\hat{f_{2}}\left(1-\hat{f_{2}}\right)\frac{e^{-2(k_{1}+k_{2})t}}{\left(\lambda-(k_{1}+k_{2})\right)^{2}}}{N(t)\frac{\mu}{\lambda}}\\
+ & =1+N_{0}\hat{f_{2}}\left(1-\hat{f_{2}}\right)\frac{\lambda}{\mu}\frac{\mu_{2}^{2}}{\left(\lambda-(k_{1}+k_{2})\right)^{2}}e^{(\lambda-2(k_{1}+k_{2}))t}\\
+ & =1+N(t)\text{Var}\left[f_{2}(t)\right]\frac{\mu_{2}}{\mu}\frac{\lambda\mu_{2}}{\left(\lambda-(k_{1}+k_{2})\right)^{2}}
 \end{align*}
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+And this can differ vastly from 
+\begin_inset Formula $1$
+\end_inset
+
+,
+ which would be the value of the FF for the uniform mutation-rate hypothesis.
 \end_layout
 
 \end_body

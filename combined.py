@@ -5,7 +5,7 @@ from tqdm import tqdm
 import pandas as pd
 
 # Parameters
-num_experiments = 4000  # Number of experiments to simulate
+num_experiments = 1000  # Number of experiments to simulate
 num_generations = 20     # Total number of generations
 
 # Mutation rates
@@ -13,8 +13,8 @@ mu_1 = 1e-6              # Mutation rate for non-mutator cells
 mu_2 = 1e-4              # Mutation rate for mutator cells (mu_2 >> mu_1)
 
 # Parameters for the switching process
-r12 = 0.001  # Switching rate from non-mutator to mutator per generation
-r21 = 0.1    # Switching rate from mutator to non-mutator per generation
+r12 = 0.0001  # Switching rate from non-mutator to mutator per generation
+r21 = 0.01    # Switching rate from mutator to non-mutator per generation
 f1_hat = r21 / (r12 + r21)  # Equilibrium fraction of non-mutator cells
 f2_hat = r12 / (r12 + r21)  # Equilibrium fraction of mutator cells
 
