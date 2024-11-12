@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\title{\textbf{Fano Factor for Different Mutation Rate Control Systems}}
+\date{\today}
+\author{Yotam Lifschytz}
+
+\begin{document}
+\maketitle
+
+We aim to devise a experimental process that can distinguish between a number of feasible hypothetical control systems for the mutation rates per base-pair in a bacterial population.
+To this end we will incorporate fluctuation tests as inspired by the Luria-Delbruck experiment, looking at the Fano factor(FF) of the number of mutants in a population.
+The FF of some RV X is defined as the ratio of the variance of X to its mean, i.e. $F(X) = \frac{\text{Var}(X)}{\text{E}(X)}$.
+We assume these control are not directly implemented genetically, for instance through variation in the genes responsible for DNA repair.
+Instead, these control system may be implemented epigenetically, or perhaps through phenotypic(expression) fluctuations and hereditary with some memory length.
+
+\section{Hypothetical Control Systems}\label{sec:hypothetical-control-systems}
+\input{sections/hypothesis}
+
+\section{Stochastic State Switching}\label{sec:sss}
+\input{sections/sss}
+
+\section{Derivation}\label{sec:derivation}
+\input{sections/derivation}
+
+\end{document}

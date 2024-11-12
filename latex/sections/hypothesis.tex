@@ -1,0 +1,45 @@
+In all the following system we assume a growth rate $\lambda$ that does not change between mutants,
+such that population size at time \(t \) is always:
+\begin{equation}
+    N(t) = N_{0} e^{\lambda t}
+    \label{eq:growth}
+\end{equation}
+
+\subsection{Static Distribution}\label{subsec:static}
+    The most simple and yet still plausible control system, is one in which each individual in the population draws it's mutation rate
+    from a static distribution with mean mutation rate $\mu$.
+    This distribution is the same for all individuals and does not change over time.
+
+\subsection{Hereditary Control}\label{subsec:hereditary}
+    In this model, we assume that the mutation rate of an individual is determined by the mutation rate of it's parent, with some additive noise.
+    In effect, this means that the distribution of mutation rates in the population is a diffusion process.
+    Biologically, one can assume there exists some \( \mu_c \) such that for any individual with mutation rate \( \mu > \mu_c \), it is likely not to survive.
+    Of course, one must have that all \( \mu \geq 0 \) just from the definition of mutation rate.
+    These interesting BC will be discussed later.
+
+\subsection{Stochastic State Switching}\label{subsec:sss}
+    \begin{enumerate}
+        \item The system has 2 different states:
+        \begin{itemize}
+            \item State 1: Low mutator cells with mutation rate $\mu_{L}$
+            \item State 2: High mutator cells with mutation rate $\mu_{H}$, where $\mu_{H} \gg \mu_{L}$.
+        \end{itemize}
+        \item There exist switching rates between these states:
+            \begin{itemize}
+                \item $r_{LH}$ : Rate of switching from State 1 to State 2
+                \item $r_{HL}$ : Rate of switching from State 2 to State 1
+            \end{itemize}
+        \item These rates result in equilibrium fractions of high and low mutator cells:
+            \begin{itemize}
+                \item Equilibrium fraction of high mutator cells: $\hat{f}_{H} = \frac{r_{LH}}{r_{LH} + r_{HL}}$
+                \item Equilibrium fraction of low mutator cells: $\hat{f}_{L} = 1 - \hat{f}_{H} = \frac{r_{HL}}{r_{LH} + r_{HL}}$
+            \end{itemize}
+        \item $\mu = \hat{f}_{H} \mu_{H} + \hat{f}_{L} \mu_{L}$ is the average mutation rate for a stochastic switching colony.
+    \end{enumerate}
+    So here we have a phenotypic state switching system, where the state is hereditary.
+    The switching rates create an average correlation time per lineage.
+    This kind of system has been observed in the different context of persistent cells, perhaps because of its stability -
+    even if any section of the population perishes, the surviving population equilibrates to the same(perhaps ideal) equilibrium fractions.
+    For the time dependent solution of the fraction of high mutator cells in the colony, see~\ref{sec:sss}.
+
+

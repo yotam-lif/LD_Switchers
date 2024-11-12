@@ -1,0 +1,26 @@
+We can now derive the time-dependent fraction of high mutator cells in the colony and some properties:
+\begin{enumerate}
+    \item If we draw a random cell from the equilibrium colony and let it grow over time, the fraction of high mutator cells in the growing colony at time $t$ can be solved:
+        \begin{equation}
+            f_{H}(t) = \frac{x_{H}(t)}{x(t)} = \begin{cases}
+            \hat{f}_{H} \left(1 - e^{-(r_{LH} + r_{HL})t}\right) & p = 1 - \hat{f}_{H} \\
+            \hat{f}_{H} + \left(1 - \hat{f}_{H}\right) e^{-(r_{LH} + r_{HL})t} & p = \hat{f}_{H}
+            \end{cases}\label{eq:time-dependent-fH}
+        \end{equation}
+    where $x_{H}(t)$ is the number of cells in high mutator state, and $x(t)$ is the total number of cells at time $t$.
+    \item Mean of $f_{H}(t)$:
+        \begin{equation}
+            E[f_{H}(t)] = \hat{f}_{H}
+            \label{eq:mean-fH}
+        \end{equation}
+    \item Mean of \( f_{H}^{2}(t) \):
+        \begin{equation}
+            E[f_{H}^{2}(t)] = \hat{f}_{H}^{2} + \hat{f}_{H} \left(1 - \hat{f}_{H}\right) e^{-2(r_{LH} + r_{HL})t}
+            \label{eq:mean-fH2}
+        \end{equation}
+    \item Variance of $f_{H}(t)$:
+        \begin{equation}
+            Var\left[f_{H}(t)\right] = \hat{f}_{H} \left(1 - \hat{f}_{H}\right) e^{-2(r_{LH} + r_{HL})t}
+            \label{eq:var-fH}
+        \end{equation}
+\end{enumerate}

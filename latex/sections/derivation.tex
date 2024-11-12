@@ -1,0 +1,85 @@
+Mean Number of Mutations E[M(t)]:
+\begin{align*}
+    E[M(t)] &= E[M_{L}(t)] + E[M_{H}(t)] \\
+    &= E\left[\int_{0}^{t} N_{L}(t') \mu_{L} \, dt' \right] + E\left[\int_{0}^{t} N_{H}(t') \mu_{H} \, dt' \right] \\
+    &= N_{0} \mu_{L} \int_{0}^{t} e^{\lambda t'} E\left[f_{L}(t')\right] \, dt' + N_{0} \mu_{H} \int_{0}^{t} e^{\lambda t'} E\left[f_{H}(t')\right] \, dt' \\
+    &\approx N_{0} \frac{\mu_{L} \hat{f}_{L} + \mu_{H} \hat{f}_{H}}{\lambda} e^{\lambda t}
+\end{align*}
+
+Where:
+\[
+N_{i}(t) = N(t) f_{i}(t)
+\]
+
+So:
+\begin{equation}
+    E[M(t)] = N(t) \frac{\mu}{\lambda}
+    \label{eq:mean_mt}
+\end{equation}
+
+Variance of the number of mutations, using the law of total variance:
+\begin{equation}
+    \text{Var}[M(t)] = E\left[\text{Var}[M(t) \mid f_{H}(t)]\right] + \text{Var}\left[E[M(t) \mid f_{H}(t)]\right]
+    \label{eq:law_of_total_variance}
+\end{equation}
+
+First term (“unexplained component”), mutation is a Poisson process:
+\begin{align*}
+    \text{Var}[M(t) \mid f_{H}(t)] &= \text{Var}[M_{L}(t) + M_{H}(t) \mid f_{H}(t)] \\
+    &= \text{Var}[M_{L}(t) \mid f_{L}(t)] + \text{Var}[M_{H}(t) \mid f_{H}(t)] \\
+    &= \int_{0}^{t} \left(N_{L}(t') \mu_{L} (1 - \mu_{L}) + N_{H}(t') \mu_{H} (1 - \mu_{H})\right) \, dt'
+\end{align*}
+Where we treat $M_{L}(t)$ and $M_{H}(t)$ as independent random variables with no covariance.
+
+Taking $\mu_{L}, \mu_{H} \ll 1$, we can approximate:
+\begin{align*}
+    \text{Var}[M(t) \mid f_{H}(t)] &\approx \int_{0}^{t} \left(N_{L}(t') \mu_{L} + N_{H}(t') \mu_{H}\right) \, dt' \\
+    &= N_{0} \int_{0}^{t} \left(f_{L}(t') \mu_{L} + f_{H}(t') \mu_{H}\right) e^{\lambda t'} \, dt'
+\end{align*}
+
+\begin{align*}
+E\left[\text{Var}[M(t) \mid f_{H}(t)]\right] &= N_{0} \int_{0}^{t} \left(E\left[f_{L}(t')\right] \mu_{L} + E\left[f_{H}(t')\right] \mu_{H}\right) e^{\lambda t'} \, dt' \\
+&= N(t) \frac{\mu}{\lambda}
+\end{align*}
+
+This term in the law of total variance is what is called the “unexplained component”. It stems from the variance of the Poisson process even for a given initial condition of $f_{H}(t)$.
+
+Now for the second term (“explained component”):
+\begin{align*}
+E[M(t) \mid f_{H}(t)] &= \int_{0}^{t} \left(N_{L}(t') \mu_{L} + N_{H}(t') \mu_{H}\right) \, dt' \\
+&= \int_{0}^{t} N(t') \left(\mu_{L} (1 - f_{H}(t')) + \mu_{H} f_{H}(t')\right) \, dt' \\
+&= N_{0} \int_{0}^{t} \left(\mu_{L} + (\mu_{H} - \mu_{L}) f_{H}(t')\right) e^{\lambda t'} \, dt' \\
+&\approx N_{0} \int_{0}^{t} \left(\mu_{L} + \mu_{H} f_{H}(t')\right) e^{\lambda t'} \, dt'
+\end{align*}
+
+\begin{align*}
+\text{Var}\left[E[M(t) \mid f_{H}(t)]\right] &= N_{0}^{2} \mu_{H}^{2} \text{Var}\left[\int_{0}^{t} \left(\begin{cases}
+\hat{f}_{H} \left(1 - e^{-(r_{LH} + r_{HL})t'}\right) & p = 1 - \hat{f}_{H} \\
+\hat{f}_{H} + \left(1 - \hat{f}_{H}\right) e^{-(r_{LH} + r_{HL})t'} & p = \hat{f}_{H}
+\end{cases}\right) e^{\lambda t'} \, dt' \right] \\
+&\approx N_{0}^{2} \mu_{H}^{2} e^{2 \lambda t} \text{Var}\left[\begin{cases}
+\hat{f}_{H} \left(\frac{1}{\lambda} - \frac{1}{\lambda - (r_{LH} + r_{HL})} e^{-(r_{LH} + r_{HL}) t}\right) & p = 1 - \hat{f}_{H} \\
+\hat{f}_{H} \frac{1}{\lambda} + \left(1 - \hat{f}_{H}\right) \frac{1}{\lambda - (r_{LH} + r_{HL})} e^{-(r_{LH} + r_{HL}) t} & p = \hat{f}_{H}
+\end{cases}\right] \\
+&:= N_{0}^{2} \mu_{H}^{2} e^{2 \lambda t} \text{Var}\left[I\right]
+\end{align*}
+
+Compute the variance of $I$:
+\begin{align*}
+E[I] &= \frac{\hat{f}_{H}}{\lambda} \\
+E[I^{2}] &= \left(1 - \hat{f}_{H}\right) \hat{f}_{H}^{2} \left(\frac{1}{\lambda} - \frac{1}{\lambda - (r_{LH} + r_{HL})} e^{-(r_{LH} + r_{HL}) t}\right)^{2} \\
+&\quad + \hat{f}_{H} \left(\hat{f}_{H} \frac{1}{\lambda} + \left(1 - \hat{f}_{H}\right) \frac{1}{\lambda - (r_{LH} + r_{HL})} e^{-(r_{LH} + r_{HL}) t}\right)^{2} \\
+&= \frac{\hat{f}_{H}^{2}}{\lambda^{2}} + \hat{f}_{H} \left(1 - \hat{f}_{H}\right) \frac{e^{-2(r_{LH} + r_{HL})t}}{\left(\lambda - (r_{LH} + r_{HL})\right)^{2}}
+\end{align*}
+
+\begin{align*}
+\text{Var}[I] &= E[I^{2}] - E[I]^{2} \\
+&= \hat{f}_{H} \left(1 - \hat{f}_{H}\right) \frac{e^{-2(r_{LH} + r_{HL})t}}{\left(\lambda - (r_{LH} + r_{HL})\right)^{2}}
+\end{align*}
+
+So in total:
+\begin{align*}
+\frac{\text{Var}[M(t)]}{\text{E}[M(t)]} &= \frac{N(t) \frac{\mu}{\lambda} + N_{0}^{2} \mu_{H}^{2} e^{2 \lambda t} \hat{f}_{H} (1 - \hat{f}_{H}) \frac{e^{-2(r_{LH} + r_{HL}) t}}{\left(\lambda - (r_{LH} + r_{HL})\right)^{2}}}{N(t) \frac{\mu}{\lambda}} \\
+&= 1 + N_{0} \hat{f}_{H} (1 - \hat{f}_{H}) \frac{\lambda}{\mu} \frac{\mu_{H}^{2}}{\left(\lambda - (r_{LH} + r_{HL})\right)^{2}} e^{(\lambda - 2(r_{LH} + r_{HL})) t} \\
+&= 1 + N(t) \text{Var}[f_{H}(t)] \frac{\mu_{H}}{\mu} \frac{\lambda \mu_{H}}{\left(\lambda - (r_{LH} + r_{HL})\right)^{2}}
+\end{align*}
