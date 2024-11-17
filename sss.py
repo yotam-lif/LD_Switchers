@@ -7,8 +7,8 @@ rate_HL = 0.0025
 total_cells = 10 ** 6
 mutation_rate_L = 10 ** -8
 mutation_rate_H = 10 ** -4
-initial_cells = 1
-num_colonies = 10 ** 3
+initial_cells = 20
+num_colonies = 10 ** 4
 generations = 20
 
 # Calculate initial probabilities
