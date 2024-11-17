@@ -1,0 +1,36 @@
+The number of division events in a growing colony up to time \( t \) is approximately:
+\begin{equation}
+    D(t) = \int_{0}^{t} N(\tau) d\tau \approx \frac{N_{0}}{\lambda} e^{\lambda t}
+    \label{eq:num-divisions}
+\end{equation}
+The number of possible base-pair mutations in these events is:
+\begin{equation}
+    n(t) = D(t) L
+    \label{eq:n-binomial}
+\end{equation}
+Thus, the number of mutants in the colony at time \( t \) is a binomial RV:
+\begin{equation}
+    M(t) \sim \text{Binomial}(n(t), \mu)
+    \label{eq:naive-binomial}
+\end{equation}
+We know that the mean and variance of a binomial RV are:
+\begin{equation}
+    \text{E}(M(t)) = n(t) \mu
+    \label{eq:mean-naive-binomial}
+\end{equation}
+\begin{equation}
+    \text{Var}(M(t)) = n(t) \mu (1 - \mu)
+    \label{eq:var-naive-binomial}
+\end{equation}
+Thus the Fano factor of the number of mutants in the colony at time \( t \) is:
+\begin{equation}
+    F(M(t)) = \frac{\text{Var}(M(t))}{\text{E}(M(t))} = 1 - \mu
+    \label{eq:naive-fano}
+\end{equation}
+For any possible static distribution, it is not feasible that, to set some arbitrary lower limit, \(\mu > 10 ^ {-2}\), for biological reasons.
+This would mean that we would have mutations in every gene, including essential genes, and these mutators would die out almost instantly.
+Thus, we can safely say that, in this case, \(1-\mu \ll 1\) and:
+\begin{equation}
+    F(M(t)) \approx 1
+    \label{eq:naive-fano-approx}
+\end{equation}

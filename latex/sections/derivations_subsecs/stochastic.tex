@@ -42,7 +42,8 @@ E\left[\text{Var}[M(t) \mid f_{H}(t)]\right] &= N_{0} \int_{0}^{t} \left(E\left[
 &= N(t) \frac{\mu}{\lambda}
 \end{align*}
 
-This term in the law of total variance is what is called the “unexplained component”. It stems from the variance of the Poisson process even for a given initial condition of $f_{H}(t)$.
+This term in the law of total variance is what is called the “unexplained component”.
+It stems from the variance of the Poisson process even for a given initial condition of $f_{H}(t)$.
 
 Now for the second term (“explained component”):
 \begin{align*}
@@ -61,7 +62,7 @@ E[M(t) \mid f_{H}(t)] &= \int_{0}^{t} \left(N_{L}(t') \mu_{L} + N_{H}(t') \mu_{H
 \hat{f}_{H} \left(\frac{1}{\lambda} - \frac{1}{\lambda - (r_{LH} + r_{HL})} e^{-(r_{LH} + r_{HL}) t}\right) & p = 1 - \hat{f}_{H} \\
 \hat{f}_{H} \frac{1}{\lambda} + \left(1 - \hat{f}_{H}\right) \frac{1}{\lambda - (r_{LH} + r_{HL})} e^{-(r_{LH} + r_{HL}) t} & p = \hat{f}_{H}
 \end{cases}\right] \\
-&:= N_{0}^{2} \mu_{H}^{2} e^{2 \lambda t} \text{Var}\left[I\right]
+&\coloneqq N_{0}^{2} \mu_{H}^{2} e^{2 \lambda t} \text{Var}\left[I\right]
 \end{align*}
 
 Compute the variance of $I$:

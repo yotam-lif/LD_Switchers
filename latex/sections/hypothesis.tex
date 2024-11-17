@@ -4,13 +4,14 @@ such that population size at time \(t \) is always:
     N(t) = N_{0} e^{\lambda t}
     \label{eq:growth}
 \end{equation}
+We assume a per-base pair mutation rate, with a genome of length \(L\).
 
 \subsection{Static Distribution}\label{subsec:static}
     The most simple and yet still plausible control system, is one in which each individual in the population draws it's mutation rate
     from a static distribution with mean mutation rate $\mu$.
     This distribution is the same for all individuals and does not change over time.
 
-\subsection{Hereditary Control}\label{subsec:hereditary}
+\subsection{Hereditary Noise}\label{subsec:hereditary}
     In this model, we assume that the mutation rate of an individual is determined by the mutation rate of it's parent, with some additive noise.
     In effect, this means that the distribution of mutation rates in the population is a diffusion process.
     Biologically, one can assume there exists some \( \mu_c \) such that for any individual with mutation rate \( \mu > \mu_c \), it is likely not to survive.
